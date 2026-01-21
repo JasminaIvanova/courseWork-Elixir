@@ -34,7 +34,7 @@ defmodule CourseworkPi do
 	end
 
 	# =========================
-	# Method 1: Leibniz
+	# Leibniz
 	# π = 4 * Σ (-1)^k / (2k+1)
 	# =========================
 
@@ -52,7 +52,7 @@ defmodule CourseworkPi do
 	defp leibniz_term(k), do: (if rem(k, 2) == 0, do: 1.0, else: -1.0) / (2.0 * k + 1.0)
 
 	# =========================
-	# Method 2: Nilakantha
+	# Nilakantha
 	# π = 3 + Σ (-1)^(k+1) * 4 / ((2k)(2k+1)(2k+2)), k>=1
 	# =========================
 
@@ -78,7 +78,7 @@ defmodule CourseworkPi do
 	end
 
 	# =========================
-	# Method 3: Machin formula
+	# Machin formula
 	# π = 16*arctan(1/5) - 4*arctan(1/239)
 	# arctan(x) = Σ (-1)^k x^(2k+1)/(2k+1)
 	# =========================
@@ -115,10 +115,6 @@ defmodule CourseworkPi do
 		term = sign * :math.pow(x, 2 * k + 1) / (2.0 * k + 1.0)
 		term + arctan_sum_rec(x, k + 1, n)
 	end
-
-	# =========================
-	# Small helpers
-	# =========================
 
 	defp series_iter(eps, state, prev_pi, k, step_fun) do
 		{pi, state2} = step_fun.(k, state)
